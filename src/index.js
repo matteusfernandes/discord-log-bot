@@ -18,3 +18,7 @@ const client = new Client({ intents: myIntents });
 client.once('ready', () => {
   console.log(`Bot online: ${client.user.tag}!`);
 });
+
+client.on('guildMemberRemove', async (member) => {
+  await scripts.memberExit(client, member);
+});
