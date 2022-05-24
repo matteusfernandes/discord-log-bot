@@ -32,7 +32,7 @@ const missConfig = () => (
 );
 
 module.exports = async (client) => {
-  const config = utils.getConfig();
+  const config = await utils.getConfig();
 
   if (config.isConfigured) {
     const message = configEmbed(config);
@@ -40,8 +40,16 @@ module.exports = async (client) => {
     return;
   }
 
+  if (config.idBotChn) {
+    const message = missConfig();
+    utils.sendMsg(client, config.idBotChn, message);
+    return;
+  }
+
   const message = missConfig();
   const guild = client.guilds.cache.get(process.env.GUILD_ID);
   const { id } = await helpers.createChn(guild);
+  config.idBotChn = id;
+  await utils.setConfig(config);
   utils.sendMsg(client, id, message);
 };
