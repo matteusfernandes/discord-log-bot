@@ -1,3 +1,10 @@
 {
-  "idMemberLogChannel": ""
+  "isConfigured": false,
+  "botName": "",
+  "idBotChn": "",
+  "idMemberChn": "",
+  "idModChn": "",
+  "idMsgChn": "",
+  "iconUrl": "",
+  "thumbUrl": ""
 }
