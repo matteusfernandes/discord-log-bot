@@ -35,21 +35,19 @@ module.exports = async (client) => {
   const config = await utils.getConfig();
 
   if (config.isConfigured) {
-    const message = configEmbed(config);
-    utils.sendMsg(client, config.idBotChn, message);
-    return;
+    utils.sendMsg(client, config.idBotChn, configEmbed(config));
+    return true;
   }
 
   if (config.idBotChn) {
-    const message = missConfig();
-    utils.sendMsg(client, config.idBotChn, message);
-    return;
+    utils.sendMsg(client, config.idBotChn, missConfig());
+    return false;
   }
 
-  const message = missConfig();
   const guild = client.guilds.cache.get(process.env.GUILD_ID);
   const { id } = await helpers.createChn(guild);
   config.idBotChn = id;
   await utils.setConfig(config);
-  utils.sendMsg(client, id, message);
+  utils.sendMsg(client, id, missConfig());
+  return false;
 };
