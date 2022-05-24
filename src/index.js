@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { Client, Intents } = require('discord.js');
 const scripts = require('./scripts');
+const helpers = require('./helpers');
 
 const myIntents = new Intents();
 
@@ -18,8 +19,11 @@ const client = new Client({ intents: myIntents });
 
 client.once('ready', () => {
   console.log(`Bot online: ${client.user.tag}!`);
+  helpers.config(client);
 });
 
 client.on('guildMemberRemove', async (member) => {
   await scripts.memberExit(client, member);
 });
+
+client.login(process.env.DISCORD_TOKEN);

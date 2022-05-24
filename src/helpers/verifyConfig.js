@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const { MessageEmbed } = require('discord.js');
 const utils = require('../utils');
+const helpers = require('.');
 
 const configEmbed = (configIds) => {
   const { botName, idBotChn, idMemberChn, idModChn, idMsgChn, iconUrl, thumbUrl } = configIds;
@@ -23,6 +26,11 @@ const configEmbed = (configIds) => {
     );
 };
 
+const missConfig = () => (
+  new MessageEmbed()
+    .setDescription('Ultilize o comando /config e configure o bot antes de usa-lo.')
+);
+
 module.exports = async (client) => {
   const config = utils.getConfig();
 
@@ -32,6 +40,8 @@ module.exports = async (client) => {
     return;
   }
 
-  return false;
-  // Se false, Retorna mensagem de erro e fica spamando o privado dos admin
+  const message = missConfig();
+  const guild = client.guilds.cache.get(process.env.GUILD_ID);
+  const { id } = await helpers.createChn(guild);
+  utils.sendMsg(client, id, message);
 };

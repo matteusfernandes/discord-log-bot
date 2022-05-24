@@ -2,7 +2,7 @@
   "name": "discord-log-bot",
   "version": "1.0.0",
   "description": "an audit log bot for discord servers",
-  "main": "server.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .",
