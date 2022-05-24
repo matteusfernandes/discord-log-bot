@@ -23,12 +23,12 @@ const configEmbed = (configIds) => {
     );
 };
 
-module.exports = async () => {
+module.exports = async (client) => {
   const config = utils.getConfig();
 
   if (config.isConfigured) {
-    configEmbed(config);
-    // chama o helper pra mandar embed com as config
+    const message = configEmbed(config);
+    utils.sendMsg(client, config.idBotChn, message);
     return;
   }
 
