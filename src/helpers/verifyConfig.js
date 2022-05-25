@@ -28,7 +28,7 @@ const configEmbed = (configIds) => {
 
 const missConfig = () => (
   new MessageEmbed()
-    .setDescription('Ultilize o comando /config e configure o bot antes de usa-lo.')
+    .setDescription('Ultilize o comando /config e configure o bot antes de usá-lo.')
 );
 
 module.exports = async (client) => {
