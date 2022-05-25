@@ -8,7 +8,7 @@ const configEmbed = (configIds) => {
   const { botName, idBotChn, idMemberChn, idModChn, idMsgChn, iconUrl, thumbUrl } = configIds;
 
   return new MessageEmbed()
-    .setTitle()
+    .setTitle('CONFIGURAÇÃO ATUAL DO BOT')
     .setColor('#42dced')
     .setTimestamp()
     .setFooter({ iconURL: iconUrl, text: 'Discord Log Bot' })

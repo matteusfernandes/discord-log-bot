@@ -7,7 +7,7 @@ const configEmbed = (configIds) => {
   const { botName, idBotChn, idMemberChn, idModChn, idMsgChn, iconUrl, thumbUrl } = configIds;
 
   return new MessageEmbed()
-    .setTitle()
+    .setTitle('CONFIGURAÇÃO ATUAL DO BOT')
     .setColor('#42dced')
     .setTimestamp()
     .setFooter({ iconURL: iconUrl, text: 'Discord Log Bot' })
@@ -73,6 +73,7 @@ module.exports = {
         thumbUrl: await interaction.options.getString('thumb'),
       };
 
+      await utils.setConfig(configData);
       await utils.sendMsg(client, configData.idBotChn, configEmbed(configData));
       await interaction.reply({ content: 'Configuração Registrada!', ephemeral: true });
     } catch (error) {
